@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AllLinkWidget</class>
+ <widget class="QWidget" name="AllLinkWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>470</width>
+    <height>677</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+  color:white;
+    font-family:&quot;Microsoft YaHei&quot;;
+}
+QWidget#AllLinkWidget
+{
+background-image: url(:/LinkMImage/allLinkBG.png);
+}
+/*设置QListWidget背景与item样式*/
+QListWidget#allLinkListW
+{
+border-image: url(:/LinkMImage/listWBgk.png);
+/*border-left:3px solid white;
+border-bottom:3px solid white;*/
+}
+QListWidget::item
+{
+background: transparent;
+}
+QListWidget::item::hover
+{
+background-color: rgb(85, 85, 255);
+}
+QListWidget::item::selected
+{
+background-color: rgb(85, 170, 255);
+}
+QPushButton#okBtn,#cancleBtn
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamConfigImage/btnMidDefault.png);
+
+}
+QPushButton#cancleBtn :hover
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamConfigImage/btmMidHover.png);
+
+}
+QPushButton#cancleBtn:pressed
+{
+background: transparent;
+	border-image: url(:/new/image/FastCombatImage/TeamConfigImage/btnMidSelect.png);
+}
+QPushButton#okBtn :hover
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamConfigImage/btmMidHover.png);
+}
+QPushButton#okBtn:pressed
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamConfigImage/btnMidSelect.png);
+}
+
+QPushButton#ButtonClose
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamChange/closeDefau.png);
+}
+QPushButton#ButtonClose :hover
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamChange/closeHover.png);
+}
+QPushButton#ButtonClose:pressed
+{
+background: transparent;
+border-image: url(:/new/image/FastCombatImage/TeamChange/closePress.png);
+}
+/*下拉框背景色选择*/
+QComboBox#protoComBox
+{
+background-color: rgb(85, 85, 255);
+border:1px solid white;
+border-radius:3px;
+}
+QComboBox#protoComBox QAbstractItemView
+{
+background-color: rgb(85, 170, 255);
+selection-background-color:green;
+
+}
+/*水平纯色滚动条*/
+QScrollBar:horizontal {/*横向背景色*/
+      border: 1px solid grey;
+      background: transparent;
+      height: 10px;
+      margin: 0px 0px 0 0px;
+  }
+QScrollBar::handle:horizontal {/*小滑块背景色*/
+      background: rgb(85, 85, 255);
+      min-width: 5px;
+	border-radius:2px
+}
+/*垂直纯色滚动条*/
+ QScrollBar:vertical {/*横向背景色*/
+      border: 1px solid grey;
+      background: transparent;
+      height: 10px;
+      margin: 0px 0px 0 0px;
+  }
+QScrollBar::handle:vertical {/*小滑块背景色*/
+      background: rgb(85, 85, 255);
+      min-width: 5px;
+}
+/*两段滚动条*/
+QScrollBar::add-page,QScrollBar::sub-page{
+   background: transparent;}
+QScrollBar::add-line,QScrollBar::sub-line{
+   background: transparent;}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>所有连接</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>37</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ButtonClose">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QListWidget" name="allLinkListW"/>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>80</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okBtn">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>删除选中</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>79</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancleBtn">
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>80</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

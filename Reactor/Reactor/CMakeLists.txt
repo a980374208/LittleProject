@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.0)
+project(Reactor)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+message(${PROJECT_SOURCE_DIR}/include)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
+add_executable(Reactor  ${SRC_LIST})
