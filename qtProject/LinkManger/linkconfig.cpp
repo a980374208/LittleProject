@@ -205,9 +205,11 @@ void LinkConfig::removeLinkConfig(BaseConfig *config,const QString& ProtoName)
 {
     if(!ProtoName.isEmpty()&&m_mapConfig[config->linkID]->lstProtoName.size()>1){
         m_mapConfig[config->linkID]->lstProtoName.removeOne(ProtoName);
+        modifyFileLinkConfig(config->linkID);
         return;
     }
     m_mapConfig.remove(config->linkID);
+    removeFileLinkConfig(config->linkID);
     delete config;
 }
 
@@ -216,6 +218,68 @@ void LinkConfig::removeLinkConfig(const QString &strLinkID)
     if(m_mapConfig.contains(strLinkID)){
         delete m_mapConfig.take(strLinkID);
     }
+}
+
+void LinkConfig::removeFileLinkConfig(const QString &strLinkID)
+{
+    QFile loadFile(m_configFilePath);
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open save file.");
+        return ;
+    }
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+    QJsonArray jsonArray = loadDoc.array();
+    QJsonObject objTmp;
+    int removePos = -1;
+    for(int i =0 ;i<jsonArray.size();++i){
+       objTmp = jsonArray.at(i).toObject();
+       if(objTmp.value("linkId").toString() == strLinkID){
+           removePos = i;
+           break;
+       }
+    }
+    if(removePos != -1){
+        jsonArray.removeAt(removePos);
+    }else{
+        return;
+    }
+    loadDoc.setArray(jsonArray);
+    QFile saveFile(m_configFilePath);
+    if (!saveFile.open(QIODevice::WriteOnly)){
+        qWarning("Couldn't open save file.");
+        return;
+    }
+    saveFile.write(loadDoc.toJson());
+    saveFile.close();
+}
+
+void LinkConfig::modifyFileLinkConfig(const QString &strLinkID)
+{
+    QFile loadFile(m_configFilePath);
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open save file.");
+        return ;
+    }
+    QByteArray saveData = loadFile.readAll();
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+    QJsonArray jsonArray = loadDoc.array();
+    QJsonObject objTmp;
+    for(int i =0 ;i<jsonArray.size();++i){
+       objTmp = jsonArray.at(i).toObject();
+       if(objTmp.value("linkId").toString() == strLinkID){
+           objTmp["protoName"] = orgnaizationProtoName( m_mapConfig[strLinkID]->lstProtoName);
+           jsonArray[i]=objTmp;
+       }
+    }
+    loadDoc.setArray(jsonArray);
+    QFile saveFile(m_configFilePath);
+    if (!saveFile.open(QIODevice::WriteOnly)){
+        qWarning("Couldn't open save file.");
+        return;
+    }
+    saveFile.write(loadDoc.toJson());
+    saveFile.close();
 }
 
 void LinkConfig::saveConfig(const BaseConfig *config)

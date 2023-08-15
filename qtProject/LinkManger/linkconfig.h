@@ -95,6 +95,9 @@ public:
     void removeLinkConfigs(const QList<BaseConfig*> &lstConfig);
     void removeLinkConfig( BaseConfig* config,const QString& ProtoName);
     void removeLinkConfig( const QString& strLinkID);
+    void removeFileLinkConfig(const QString& strLinkID);
+
+    void modifyFileLinkConfig(const QString& strLinkID);
 
     void saveConfig(const BaseConfig* config);
 public:
